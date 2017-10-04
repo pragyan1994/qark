@@ -1,0 +1,94 @@
+INFO - Initializing...
+INFO - Identified Android SDK installation from a previous run.
+INFO - Initializing QARK
+
+INFO - Unpacking /Users/suruchi.srivastava/Desktop/InsecureBank.apk
+INFO - Zipfile: <zipfile.ZipFile object at 0x100abc8d0>
+INFO - Extracted APK to /Users/suruchi.srivastava/Desktop/InsecureBank/
+INFO - <?xml version="1.0" ?><manifest android:versionCode="1" android:versionName="1.0" package="com.android.insecurebank" xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-sdk android:minSdkVersion="8"/>
+    <application android:debuggable="true" android:icon="@drawable/icon" android:label="@string/app_name">
+        <activity android:label="@string/app_name" android:name=".InsecureBankActivity" android:theme="@android:style/Theme.Dialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/app_name" android:name=".LoginScreen"/>
+        <activity android:label="@string/app_name" android:name=".SuccessScreen"/>
+        <activity android:label="@string/app_name" android:name=".PostLogin"/>
+        <activity android:label="@string/app_name" android:name=".RawHistory"/>
+        <activity android:name=".Preferences"/>
+    </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+</manifest>
+INFO - Determined minimum SDK version to be:8
+WARNING - Logs are world readable on pre-4.1 devices. A malicious app could potentially retrieve sensitive data from the logs.
+ISSUES - APP COMPONENT ATTACK SURFACE
+WARNING - The backup element is not specified in the manifest, which therefore defaults to true. Potential for data theft via local attacks via adb backup, if the device has USB debugging enabled (not common). More info: http://developer.android.com/reference/android/R.attr.html#allowBackup
+POTENTIAL VULNERABILITY - The android:debuggable flag is manually set to true in the AndroidManifest.xml. This will cause your application to be debuggable in production builds and can result in data leakage and other security issues. It is not necessary to set the android:debuggable flag in the manifest, it will be set appropriately automatically by the tools. More info: http://developer.android.com/guide/topics/manifest/application-element.html#debug
+INFO - Checking provider
+INFO - Checking activity
+WARNING - The following activity are exported, but not protected by any permissions. Failing to protect activity could leave them vulnerable to attack by malicious apps. The activity should be reviewed for vulnerabilities, such as injection and information leakage.
+INFO - Checking activity-alias
+INFO - Checking services
+INFO - Checking receivers
+INFO - Please wait while QARK tries to decompile the code back to source using multiple decompilers. This may take a while.
+INFO - Trying to improve accuracy of the decompiled files
+INFO - Restored 0 file(s) out of 0 corrupt file(s)
+INFO - Decompiled code found at:/Users/suruchi.srivastava/Desktop/InsecureBank/
+INFO - Finding all java files
+INFO - Finding all xml files
+INFO - Running Static Code Analysis...
+INFO - Looking for private key files in project
+INFO - This class is exported from a manifest item: InsecureBankActivity
+INFO - Checking this file for vulns: /Users/suruchi.srivastava/Desktop/InsecureBank/classes_dex2jar/com/android/insecurebank/InsecureBankActivity.java
+INFO - Checking for extras in this file: /Users/suruchi.srivastava/Desktop/InsecureBank/classes_dex2jar/com/android/insecurebank/InsecureBankActivity.java from this entry point: onCreate
+INFO - This class extends and calls a method in : Activity
+INFO - No custom imports to investigate. The method is assumed to be in the standard libraries
+INFO - No custom imports to investigate. The method is assumed to be in the standard libraries
+INFO - No custom imports to investigate. The method is assumed to be in the standard libraries
+ISSUES - CRYPTO ISSUES
+INFO -  No issues to report
+ISSUES - BROADCAST ISSUES
+INFO -  No issues to report
+ISSUES - CERTIFICATE VALIDATION ISSUES
+INFO -  No issues to report
+ISSUES - PENDING INTENT ISSUES
+INFO -  No issues to report
+ISSUES - FILE PERMISSION ISSUES
+INFO -  No issues to report
+ISSUES - WEB-VIEW ISSUES
+INFO - FOUND 1 WEBVIEWS:
+INFO - ['mStatementDisplay', '/Users/suruchi.srivastava/Desktop/InsecureBank/classes_dex2jar/com/android/insecurebank/PostLogin.java']
+INFO - WebView: mStatementDisplay
+INFO - File: /Users/suruchi.srivastava/Desktop/InsecureBank/classes_dex2jar/com/android/insecurebank/PostLogin.java
+
+INFO - WEBVIEW DEFAULTS DO NOT APPEAR TO BE OVERRIDDEN-DISPLAYING DEFAULTS:
+WARNING - All Webviews in JellyBean (4.3 - API <= 18) have catastrophic Same Origin Policy Flaws. You should not support these versions, unless your WebView never loads content from external domains. Google no longer supports patching the browser used in these WebViews: http://stanford.edu/~pcm2d/blog/webview_sop.html.
+INFO - JS not enabled on this webView.
+INFO - BaseURL not redefined in this WebView.
+WARNING - File system access is enabled in this WebView. If untrusted data is used to specify the URL opened by this WebView, a malicious app or site may be able to read your app's private files, if it returns the response to them. To validate this vulnerability, load the following url in this WebView: http://www.secbro.com/qark/poc/FILE_SYS_WARN.html. Note: A local copy of this html file can also be found at <install_dir>/quark/poc/html/FILE_SYS_WARN.htmlIf untrusted data is used to specify the URL opened by this WebView, a malicious app or site may be able to read your app's private files, if it returns the response to them. To validate this vulnerability, load the following url in this WebView: http://www.secbro.com/poc/html/FILE_SYS_WARN.html.Note: A local copy of this html file can also be found at <install_dir>/quark/poc/html/FILE_SYS_WARN.html
+WARNING - While not a vulnerability by itself, it appears this app does not explicitly disable Content Provider access from WebViews. If the WebViews take in untrusted input, this can allow for data theft. To validate this vulnerability, load the following url in this WebView: http://www.secbro.com/qark/poc/WV_CPA_WARNING.html. Note: A local copy of this html file can also be found at <install_dir>/quark/poc/html/WV_CPA_WARNING.html To validate this vulnerability, load the following url in this WebView: http://www.secbro.com/poc/html/WV_CPA_WARNING.htmlNote: A local copy of this html file can also be found at <install_dir>/quark/poc/html/WV_CPA_WARNING.html
+WARNING - JavaScript running in a file scheme context can access content from any origin. This is an insecure default value for minSdkVersion < 16 or may have been overridden (setAllowUniversalAccessFromFileURLs) in later versions. To validate this vulnerability, load the following url in this WebView: http://www.secbro.com/qark/poc/UNIV_FILE_WARNING.html. Note: A local copy of this html file can also be found at <install_dir>/quark/poc/html/UNIV_FILE_WARNING.html To validate this vulnerability, load the following url in this WebView: http://www.secbro.com/poc/html/UNIV_FILE_WARNING.htmlNote: A local copy of this html file can also be found at <install_dir>/quark/poc/html/UNIV_FILE_WARNING.html
+WARNING - JavaScript running in a file scheme context can access content from any origin. This is an insecure default value for minSdkVersion < 16 or may have been overridden (setAllowFileAccessFromFileURLs) in later versions. To validate this vulnerability, load the following url in this WebView: http://www.secbro.com/qark/poc/FURL_FILE_WARNING.html. Note: A local copy of this html file can also be found at <install_dir>/qark/poc/html/FURL_FILE_WARNING.html To validate this vulnerability, load the following url in this WebView: http://www.secbro.com/poc/html/FURL_FILE_WARNING.htmlNote: A local copy of this html file can also be found at <install_dir>/quark/poc/html/FURL_FILE_WARNING.html
+INFO - setPluginsEnabled has been deprecated since API 9 and is removed in 18. You should update this code.
+INFO - addJavascriptInterface not used in this WebView.
+INFO - DOM Storage not enabled for this WebView.
+ISSUES - PLUGIN ISSUES
+INFO -  No issues to report
+ISSUES - PLUGIN ISSUES
+POTENTIAL VULNERABILITY - Access of phone number or IMEI, is detected in file: /Users/suruchi.srivastava/Desktop/InsecureBank/classes_dex2jar/com/android/insecurebank/LoginScreen.java.
+Avoid storing or transmitting this data.
+ISSUES - PLUGIN ISSUES
+INFO -  No issues to report
+WARNING - Please use the exploit APK to manually test for TapJacking until we have a chance to complete this module. The impact should be verified manually anyway, so have fun...
+ISSUES - ADB EXPLOIT COMMANDS
+INFO - Until we perfect this, for manually testing, run the following command to see all the options and their meanings: adb shell am. Make sure to update qark frequently to get all the enhancements! You'll also find some good examples here: http://xgouchet.fr/android/index.php?article42/launch-intents-using-adb
+INFO - Checking for extras in this file: .InsecureBankActivity from this entry point: onCreate
+INFO - Checking for extras in this file: .InsecureBankActivity from this entry point: onStart
+INFO - Support for other component types and dynamically adding extras is in the works, please check for updates
+INFO - Checking for extras in this file: com.android.insecurebank.InsecureBankActivity from this entry point: onCreate
+INFO - Checking for extras in this file: com.android.insecurebank.InsecureBankActivity from this entry point: onStart
